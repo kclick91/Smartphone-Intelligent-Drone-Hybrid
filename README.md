@@ -1,6 +1,6 @@
 # Project VERION: Smartphone–Intelligent Drone Hybrid
 
-> **Version 0.1** — Initial concept and feasibility draft. This document is a living specification and will be revised as the design matures.
+> **Version 0.2** — Adds societal benefits and impact analysis alongside the original concept and feasibility draft. This document is a living specification and will be revised as the design matures.
 
 ---
 
@@ -98,7 +98,21 @@ The device needs two distinct AI capabilities: a **conversational/planning layer
 
 ---
 
-## 5. Risks and Challenges to Society
+## 5. Benefits to Society and How Society Will Be Affected
+
+A device that merges a pocketable phone with an on-demand aerial platform could shift how ordinary people access aerial capability, currently limited mostly to hobbyists, professionals, and institutions.
+
+- **Democratized aerial perspective**: everyday users gain instant access to overhead views for everyday tasks — checking a roof for storm damage, scouting a hiking trail ahead, finding a parking spot in a crowded lot, or capturing a family event from above — without owning or carrying separate drone hardware.
+- **Emergency and personal safety uses**: a phone that can fly could locate a lost hiker's own position relative to a trail, search for a misplaced pet or child within sight of a campsite, or give a stranded driver a quick view of surrounding terrain, all using a device the person already has on them.
+- **Search and rescue at civilian scale**: widespread ownership means that in a localized disaster (flood, earthquake, missing person), a far larger number of aerial "eyes" could be mobilized quickly by ordinary bystanders and coordinated by responders, supplementing dedicated rescue drones.
+- **Accessibility gains**: people with mobility limitations could gain a new way to inspect hard-to-reach areas of their own home or property (gutters, roofs, high shelves) without climbing or requiring assistance.
+- **Lowered cost of entry for creative and educational use**: students, hobbyist photographers, and small content creators would no longer need to buy a separate drone to experiment with aerial photography, mapping, or robotics/AI education, potentially broadening participation in STEM and creative fields.
+- **Small business and gig-economy enablement**: real estate agents, small farmers, and local contractors could get basic aerial documentation (property overviews, crop checks, roof inspections) from a device they already carry, lowering costs currently tied to dedicated drone equipment or hired operators.
+- **Shift in social norms around personal technology**: just as smartphones normalized always-on photography and connectivity, a flying phone would likely normalize casual aerial observation of daily life, changing public expectations around privacy in shared and semi-private spaces (yards, parks, streets) and likely accelerating "assume you might be filmed from above" norms.
+- **Infrastructure and urban planning pressure**: cities and regulators would likely need to adapt low-altitude airspace management, insurance frameworks, and public-space rules well before mass adoption, similar to how ride-sharing and e-scooters forced rapid municipal policy adaptation.
+- **Net effect is double-edged**: the same ubiquity that enables convenience, safety, and creative benefits (Section 5) is what drives the surveillance, airspace-congestion, and security risks (Section 6) — the two are not separable and any deployment strategy has to weigh them together rather than treating benefits and risks as independent tracks.
+
+## 6. Risks and Challenges to Society
 
 - **Privacy and surveillance concerns**: a drone that nearly everyone already carries in their pocket dramatically lowers the barrier to casual aerial surveillance, filming into windows, over fences, or of people without consent, at a scale far beyond today's dedicated consumer drones.
 - **Airspace congestion and safety**: if adoption is high, low-altitude urban airspace could see far more small aircraft than today's drone population, increasing risk of collisions with people, property, other aircraft (including emergency response helicopters), and infrastructure.
@@ -111,7 +125,7 @@ The device needs two distinct AI capabilities: a **conversational/planning layer
 
 ---
 
-## 6. Propeller and Propulsion Material Comparison
+## 7. Propeller and Propulsion Material Comparison
 
 Small folding propellers and propulsion components must balance thrust efficiency, durability, noise, weight, and safety (since they will operate close to human hands and faces far more often than a dedicated drone's).
 
@@ -128,13 +142,20 @@ Small folding propellers and propulsion components must balance thrust efficienc
 
 ---
 
-## Open Questions for v0.2
+## Open Questions
 
+**Carried over from v0.1:**
 - Final choice of on-device NPU and its shared compute budget between flight control and LLM inference.
 - Regulatory strategy for dual phone/aircraft certification across major markets.
 - User-safety design for exposed propellers when handled in transition between modes.
 - Battery chemistry and thermal strategy under combined flight + cellular load.
 
+**New in v0.2:**
+- What insurance and liability model would apply to casual/bystander-operated search-and-rescue use, given the device is not owned or trained as dedicated rescue equipment?
+- How should municipal/urban airspace policy be updated in advance of mass adoption, rather than reactively after incidents occur?
+- What technical or policy mechanisms (e.g., visible flight-mode indicators, mandatory remote ID broadcast) could reduce the "disguised as an everyday object" ambiguity raised in the societal risks section?
+- How should the societal benefits (democratized access, accessibility gains, education) be weighed against surveillance-normalization risk when deciding default privacy settings and geofencing defaults out of the box?
+
 ---
 
-*End of Version 0.1 draft.*
+*End of Version 0.2 draft.*
