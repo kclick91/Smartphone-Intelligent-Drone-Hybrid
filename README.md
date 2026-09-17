@@ -1,6 +1,6 @@
 # Project VERION: Smartphone–Intelligent Drone Hybrid
 
-> **Version 0.2** — Adds societal benefits and impact analysis alongside the original concept and feasibility draft. This document is a living specification and will be revised as the design matures.
+> **Version 0.3** — Adds a capability-based shortlist of five companies relevant to developing the smartphone–intelligent drone hybrid, alongside the societal benefits and impact analysis. This document is a living specification and will be revised as the design matures.
 
 ---
 
@@ -158,4 +158,117 @@ Small folding propellers and propulsion components must balance thrust efficienc
 
 ---
 
-*End of Version 0.2 draft.*
+*End of Version 0.3 draft.*
+
+---
+
+## 8. Five Companies with Relevant Capabilities to Build Project VERION
+
+This shortlist identifies companies whose existing capabilities map to major parts of the smartphone–intelligent drone hybrid: premium smartphone design and software, compact mobile compute, and autonomous flight systems. It is a **capability-based shortlist, not a claim that any company has committed to build VERION or that a partnership is available**. A phone-drone product would likely require substantial cross-company engineering.
+
+### 8.1 Apple — Integrated Smartphone Product and User Experience
+
+**Why it is relevant**
+- Apple develops the iPhone, its operating system, custom silicon, camera systems, and tightly integrated hardware/software experiences.
+- Its September 2026 introduction of a foldable iPhone demonstrates ongoing work on compact, transforming mobile-device form factors.
+
+**Potential VERION contribution**
+- Product definition, industrial design, enclosure integration, mobile operating system, privacy controls, camera pipeline, and on-device AI experience.
+- A unified experience for switching between phone and flight modes, with clear safety prompts and user controls.
+
+**Main gaps / challenges**
+- Apple is not established here as a manufacturer of consumer autonomous quadrotors; flight hardware, flight-control safety, and aviation certification would require major new capability or a specialist partner.
+- Integrating motors, propellers, battery discharge, and thermal loads into a premium phone would challenge thinness, durability, repairability, and safety.
+
+**Evidence:** Apple’s September 9, 2026 announcement describes its foldable iPhone, custom A20 Pro silicon, thermal management, and Apple Intelligence. <Cite refs={["turn0search10"]} />
+
+### 8.2 Samsung Electronics — Smartphone Manufacturing and Foldable Hardware
+
+**Why it is relevant**
+- Samsung has broad smartphone hardware and manufacturing capabilities, including foldable devices and a connected Galaxy ecosystem.
+- Samsung collaborates with Qualcomm on mobile platforms and AI experiences across device categories.
+
+**Potential VERION contribution**
+- Smartphone mechanical integration, displays, battery packaging, mass manufacturing, and Android/Galaxy ecosystem integration.
+- Prototyping a transforming chassis and coordinating mobile compute with specialized flight electronics.
+
+**Main gaps / challenges**
+- A folding phone is not equivalent to a flight-capable airframe; precision rotor mechanics, vibration isolation, and flight safety would need dedicated development.
+- A hybrid would add unusual mechanical wear, exposed-rotor hazards, and certification burdens.
+
+**Evidence:** Qualcomm’s July 22, 2026 release describes its collaboration with Samsung across Galaxy smartphones and other connected devices. <Cite refs={["turn0search0"]} />
+
+### 8.3 Qualcomm — Mobile Compute, Connectivity, and On-Device AI
+
+**Why it is relevant**
+- Qualcomm supplies Snapdragon mobile platforms that combine processing, AI acceleration, and wireless connectivity for smartphone manufacturers.
+- These capabilities align with VERION’s need for efficient on-device perception, mission planning, and communications.
+
+**Potential VERION contribution**
+- Mobile SoC/NPU platform, connectivity, power-efficient AI inference, and engineering support for an OEM integrating compute into a compact device.
+- A potential platform partner rather than necessarily the consumer-facing product manufacturer.
+
+**Main gaps / challenges**
+- A mobile application processor is not a substitute for a deterministic, safety-critical flight controller, motor drivers, or validated flight-control software.
+- Flight workloads could compete with phone tasks for battery power, memory bandwidth, and thermal headroom.
+
+**Evidence:** Qualcomm’s May 7, 2026 release describes Snapdragon mobile platforms with AI-powered camera features, performance, power efficiency, and 5G/Wi-Fi connectivity. <Cite refs={["turn0search4"]} />
+
+### 8.4 DJI — Consumer Drone Hardware and Aerial Imaging
+
+**Why it is relevant**
+- DJI is an established drone company with consumer and enterprise aircraft, camera systems, and supporting software.
+- Its experience is directly relevant to compact propulsion, aerial imaging, flight-control integration, and consumer drone workflows.
+
+**Potential VERION contribution**
+- Drone subsystem expertise: rotor/motor design, flight-control integration, stabilization, camera gimbaling or stabilization, and compact aircraft packaging.
+- Potential technical partner or reference point for a dedicated flight module.
+
+**Main gaps / challenges**
+- DJI’s established drone products are separate aircraft, not evidence of a smartphone-sized integrated flying phone.
+- Regulatory and supply-chain constraints may affect feasibility for particular markets, especially the United States; legal status should be checked for the intended launch date and product category.
+
+**Evidence:** Industry comparisons describe DJI’s broad consumer-to-enterprise drone ecosystem, while 2026 reporting discusses U.S. restrictions and market uncertainty. <Cite refs={["turn0search11","turn0news12"]} />
+
+### 8.5 Skydio — Autonomous Flight and AI Perception
+
+**Why it is relevant**
+- Skydio develops AI-enabled autonomous drones and integrated software for applications such as inspection and public safety.
+- Its autonomy, perception, and real-time navigation experience map to VERION’s obstacle avoidance and autonomous mission ambitions.
+
+**Potential VERION contribution**
+- Autonomy software, perception/navigation architecture, flight-safety lessons, and integration expertise.
+- A potential autonomy technology partner or source of engineering know-how, rather than a demonstrated smartphone manufacturer.
+
+**Main gaps / challenges**
+- Skydio’s products are purpose-built drones; miniaturizing their relevant capabilities into a phone-sized, consumer-priced device would be a separate engineering program.
+- Its current commercial emphasis includes enterprise, public safety, and defense, so a mass-market smartphone hybrid may not match its present product focus.
+
+**Evidence:** Skydio describes its integrated drones, docks, autonomy platform, and software; its April 2026 announcement also outlined U.S. manufacturing and R&D expansion. <Cite refs={["turn0search3","turn0search1"]} />
+
+### 8.6 Comparative Capability Matrix
+
+| Company | Smartphone / mobile integration | Drone / flight expertise | Autonomy / AI | Plausible VERION role |
+|---|---|---|---|---|
+| Apple | Core strength | Not established as a core product area | On-device AI and ecosystem | Product owner, phone platform, UX |
+| Samsung | Core strength | Not established as a core product area | Connected-device AI ecosystem | Phone hardware and manufacturing |
+| Qualcomm | Mobile platform supplier | Not a drone manufacturer | Mobile AI acceleration | Compute and connectivity supplier |
+| DJI | Companion apps, not phone OEM | Core strength | Drone automation and imaging | Drone subsystem specialist |
+| Skydio | Not a phone OEM | Core strength | Core strength in autonomous flight | Autonomy and perception specialist |
+
+### 8.7 Practical Partnership Hypothesis
+
+A plausible *hypothesis* is a cross-disciplinary team rather than one company doing everything:
+
+1. **Smartphone/product lead:** Apple or Samsung.
+2. **Mobile compute and connectivity:** Qualcomm or the phone maker’s own silicon platform.
+3. **Flight hardware and imaging:** a drone specialist such as DJI, subject to market-specific regulatory and supply-chain review.
+4. **Autonomy and perception:** a specialist such as Skydio, or an independently developed flight stack.
+5. **Independent safety engineering:** flight-control, battery, rotor-guard, cybersecurity, privacy, and certification specialists.
+
+This is a conceptual division of responsibilities, not a proposed or confirmed partnership. The most important early validation would be a working flight-capable prototype that proves the combined mass, thrust, battery discharge, rotor safety, thermal limits, and controlled transformation can coexist in the intended phone envelope.
+
+### 8.8 Research Caveat
+
+Company capabilities and regulatory conditions change. The references above support the specific capabilities stated, but do not establish that any company has announced a VERION-like product, agreed to collaborate, or confirmed that the concept is commercially feasible. Recheck corporate announcements, supplier availability, and applicable aviation and radio rules before using this shortlist for outreach or investment decisions.
+
