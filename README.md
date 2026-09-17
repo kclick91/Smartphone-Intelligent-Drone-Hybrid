@@ -1,6 +1,6 @@
 # Project VERION: Smartphone–Intelligent Drone Hybrid
 
-> **Version 0.3** — Adds a capability-based shortlist of five companies relevant to developing the smartphone–intelligent drone hybrid, alongside the societal benefits and impact analysis. This document is a living specification and will be revised as the design matures.
+> **Version 0.31** — Reorders the document so the capability-based shortlist of five companies (Section 8) now appears before the Open Questions section; no analytical content was changed from v0.3. Version 0.3 added that shortlist alongside the societal benefits and impact analysis. This document is a living specification and will be revised as the design matures.
 
 ---
 
@@ -142,26 +142,6 @@ Small folding propellers and propulsion components must balance thrust efficienc
 
 ---
 
-## Open Questions
-
-**Carried over from v0.1:**
-- Final choice of on-device NPU and its shared compute budget between flight control and LLM inference.
-- Regulatory strategy for dual phone/aircraft certification across major markets.
-- User-safety design for exposed propellers when handled in transition between modes.
-- Battery chemistry and thermal strategy under combined flight + cellular load.
-
-**New in v0.2:**
-- What insurance and liability model would apply to casual/bystander-operated search-and-rescue use, given the device is not owned or trained as dedicated rescue equipment?
-- How should municipal/urban airspace policy be updated in advance of mass adoption, rather than reactively after incidents occur?
-- What technical or policy mechanisms (e.g., visible flight-mode indicators, mandatory remote ID broadcast) could reduce the "disguised as an everyday object" ambiguity raised in the societal risks section?
-- How should the societal benefits (democratized access, accessibility gains, education) be weighed against surveillance-normalization risk when deciding default privacy settings and geofencing defaults out of the box?
-
----
-
-*End of Version 0.3 draft.*
-
----
-
 ## 8. Five Companies with Relevant Capabilities to Build Project VERION
 
 This shortlist identifies companies whose existing capabilities map to major parts of the smartphone–intelligent drone hybrid: premium smartphone design and software, compact mobile compute, and autonomous flight systems. It is a **capability-based shortlist, not a claim that any company has committed to build VERION or that a partnership is available**. A phone-drone product would likely require substantial cross-company engineering.
@@ -272,3 +252,22 @@ This is a conceptual division of responsibilities, not a proposed or confirmed p
 
 Company capabilities and regulatory conditions change. The references above support the specific capabilities stated, but do not establish that any company has announced a VERION-like product, agreed to collaborate, or confirmed that the concept is commercially feasible. Recheck corporate announcements, supplier availability, and applicable aviation and radio rules before using this shortlist for outreach or investment decisions.
 
+---
+
+## Open Questions
+
+**Carried over from v0.1:**
+- Final choice of on-device NPU and its shared compute budget between flight control and LLM inference.
+- Regulatory strategy for dual phone/aircraft certification across major markets.
+- User-safety design for exposed propellers when handled in transition between modes.
+- Battery chemistry and thermal strategy under combined flight + cellular load.
+
+**New in v0.2:**
+- What insurance and liability model would apply to casual/bystander-operated search-and-rescue use, given the device is not owned or trained as dedicated rescue equipment?
+- How should municipal/urban airspace policy be updated in advance of mass adoption, rather than reactively after incidents occur?
+- What technical or policy mechanisms (e.g., visible flight-mode indicators, mandatory remote ID broadcast) could reduce the "disguised as an everyday object" ambiguity raised in the societal risks section?
+- How should the societal benefits (democratized access, accessibility gains, education) be weighed against surveillance-normalization risk when deciding default privacy settings and geofencing defaults out of the box?
+
+---
+
+*End of Version 0.31 draft.*
