@@ -1,12 +1,28 @@
 # Project VERION: Smartphone–Intelligent Drone Hybrid
 
-> **Version 0.31** — Reorders the document so the capability-based shortlist of five companies (Section 8) now appears before the Open Questions section; no analytical content was changed from v0.3. Version 0.3 added that shortlist alongside the societal benefits and impact analysis. This document is a living specification and will be revised as the design matures.
+> **Version 1.0** — First consolidated release. Adds a table of contents, two candidate solutions for every risk in Section 4, and a new Section 9 covering the project breakdown, work packages, milestones, and estimated timetable. Version 0.31 reordered the five-company capability shortlist ahead of the Open Questions; version 0.3 added that shortlist alongside the societal benefits and impact analysis. This document remains a living specification and will be revised as the design matures.
 
 ---
 
 ## Executive Summary
 
 This document outlines the concept, technical requirements, and open risks for a hybrid device: a fully functional smartphone that can detach, unfold, or reconfigure itself into a small autonomous quadrotor drone. The device would serve as a personal communication tool and an on-demand aerial sensing/camera platform, controlled either directly by the user or semi-autonomously via onboard AI.
+
+---
+
+## Table of Contents
+
+- [Executive Summary](#executive-summary)
+- [1. Technology and Innovations Required](#1-technology-and-innovations-required)
+- [2. Device Measurements](#2-device-measurements)
+- [3. AI Systems: LLM and Reinforcement Learning Comparison](#3-ai-systems-llm-and-reinforcement-learning-comparison)
+- [4. Risks and Challenges in Building the Hybrid Device](#4-risks-and-challenges-in-building-the-hybrid-device)
+- [5. Benefits to Society and How Society Will Be Affected](#5-benefits-to-society-and-how-society-will-be-affected)
+- [6. Risks and Challenges to Society](#6-risks-and-challenges-to-society)
+- [7. Propeller and Propulsion Material Comparison](#7-propeller-and-propulsion-material-comparison)
+- [8. Five Companies with Relevant Capabilities to Build Project VERION](#8-five-companies-with-relevant-capabilities-to-build-project-verion)
+- [9. Project Breakdown and Estimated Timetable](#9-project-breakdown-and-estimated-timetable)
+- [Open Questions](#open-questions)
 
 ---
 
@@ -87,14 +103,32 @@ The device needs two distinct AI capabilities: a **conversational/planning layer
 
 ## 4. Risks and Challenges in Building the Hybrid Device
 
+Each risk below is followed by two candidate mitigations. These are engineering directions to evaluate, not settled design decisions.
+
 - **Weight/power/thermal budget conflict**: batteries good for a full day of phone use are typically not optimized for high-discharge flight bursts, and vice versa. A single battery chemistry serving both use cases will always be a compromise.
+  - *Solution 1 — Dual-cell hybrid pack*: pair a high-energy-density Li-ion cell sized for phone standby with a small high-discharge Li-po or silicon-anode cell dedicated to flight bursts, arbitrated by the PMIC so flight current never draws the phone cell below a reserve floor that guarantees a post-landing call.
+  - *Solution 2 — Bounded flight envelope with enforced reserve*: cap flight sessions by policy (e.g., 4–6 minute sorties with a mandatory cooldown) and have the flight controller trigger an automatic return-to-hand at a firmware-locked state-of-charge threshold, trading endurance for a guaranteed usable phone after every flight.
 - **Structural fatigue**: transformation joints subject to thousands of fold/unfold cycles are a likely failure point; a single stuck or partially-deployed arm is a critical flight hazard.
+  - *Solution 1 — Instrumented joints with pre-flight self-test*: place Hall-effect or magnetic-encoder sensors in every hinge so the system verifies full deployment and lock engagement before arming the motors, and refuses to spin up on any ambiguous reading.
+  - *Solution 2 — Titanium hinge pins on a serviceable cartridge*: concentrate fatigue into a small, replaceable hinge/latch module (titanium pins, hardened bushings) rated for a published cycle count, so wear becomes a scheduled service item rather than a catastrophic in-flight failure.
 - **Aerodynamic penalty of a small, dense airframe**: a 210–240 mm diagonal is very small for a quadrotor; expect short flight times (likely under 5–8 minutes), high sensitivity to wind, and limited payload margin for extra sensors.
+  - *Solution 1 — Telescoping arms that extend beyond the phone footprint*: gain effective diagonal (and therefore propeller disc area and stability margin) by having the arms extend well past the folded body rather than treating the phone outline as the airframe limit.
+  - *Solution 2 — Wind-aware autonomy and mission scoping*: use onboard airspeed/attitude estimation to detect gust conditions and refuse or shorten flights outside a validated envelope, while positioning the product around short-duration "look and return" tasks instead of sustained cruising.
 - **Electromagnetic interference**: motors, ESCs, and high-current propulsion wiring sit close to cellular/Wi-Fi antennas and sensitive camera/IMU electronics, risking interference with both flight sensors and phone radios.
+  - *Solution 1 — Physical and electrical segregation*: route high-current propulsion traces on a separate shielded board layer with mu-metal or ferrite shielding around ESCs, and place antennas at the opposite end of the chassis from the motor bays.
+  - *Solution 2 — Coordinated radio scheduling in flight mode*: have the unified OS reduce or time-slice non-essential cellular transmit power during active flight, reserving a hardened low-latency control channel and falling back to a known-good link if interference is detected.
 - **Thermal management**: the SoC, NPU, flight controller, and motor drivers all generate heat in an enclosure with little room for heat sinks or fans, especially problematic mid-flight when performance demands peak.
+  - *Solution 1 — Use rotor downwash as active cooling*: route a vapor chamber or graphite spreader from the SoC and motor drivers to fins placed in the propeller airflow path, turning flight mode itself into the cooling mode.
+  - *Solution 2 — Thermally aware compute scheduling*: give the flight-control task absolute thermal priority, throttling or suspending LLM inference, high-resolution video encode, and background phone tasks whenever junction temperature approaches limits during flight.
 - **Certification complexity**: the device must simultaneously satisfy phone/radio certification (FCC/CE for cellular and Wi-Fi) and aviation authority requirements (e.g., FAA Part 107 or equivalent, remote ID broadcasting) — two very different regulatory regimes bundled into one SKU.
+  - *Solution 1 — Architect the flight subsystem as a certifiable module*: keep flight control, motors, and remote ID in a logically and electrically distinct block with its own documentation package, so aviation and radio authorities can each evaluate a bounded subsystem rather than the whole phone.
+  - *Solution 2 — Early regulator engagement and staged market entry*: open pre-submission dialogue with the FAA/EASA and radio regulators during prototyping, and launch first in jurisdictions whose sub-250 g recreational rules are clearest before pursuing broader certification.
 - **Repairability and cost**: precision folding mechanisms, micro motors, and dual-purpose electronics will likely make the device expensive to manufacture and difficult/costly to repair compared to either a standalone phone or standalone drone.
+  - *Solution 1 — Modular arm/rotor assemblies*: make each arm a field-replaceable unit with a standard connector so a damaged rotor or hinge is a swap rather than a full-device repair, and publish parts and procedures for independent service.
+  - *Solution 2 — Tiered product strategy*: offer a lower-cost variant with reinforced-nylon blades and simpler autonomy alongside a premium build, amortizing shared tooling for the chassis and compute across both to bring unit cost down.
 - **Sim-to-real transfer risk**: RL policies trained in simulation may not transfer cleanly to the specific, unusual aerodynamics of a phone-shaped drone body, requiring extensive real-world tuning.
+  - *Solution 1 — Domain randomization plus wind-tunnel-identified dynamics*: randomize mass, inertia, motor response, and disturbance parameters during PPO training, and tighten the simulator against measured wind-tunnel and tethered-flight data from the actual chassis.
+  - *Solution 2 — Layered control with a classical safety fallback*: run the learned policy on top of a conventional cascaded PID/attitude controller that remains authoritative, so a policy that behaves unexpectedly degrades to stable, well-understood flight rather than losing control.
 
 ---
 
@@ -254,6 +288,63 @@ Company capabilities and regulatory conditions change. The references above supp
 
 ---
 
+## 9. Project Breakdown and Estimated Timetable
+
+This section decomposes VERION into work packages and gives an estimated schedule. Durations are planning estimates for a concept-to-first-product program, not commitments. All dates are expressed relative to **Month 0 = program start**; the illustrative calendar column assumes a Month 0 of **January 2027** and should be re-anchored to the actual start date.
+
+### 9.1 Phase Overview
+
+| Phase | Name | Relative window | Illustrative dates | Duration | Exit criterion |
+|---|---|---|---|---|---|
+| **P0** | Concept and feasibility | M0 – M6 | Jan 2027 – Jun 2027 | 6 months | Signed-off requirements and a credible mass/thrust/power budget |
+| **P1** | Subsystem prototyping | M4 – M14 | Apr 2027 – Feb 2028 | 10 months | Each subsystem demonstrated standalone on the bench |
+| **P2** | Integrated flying prototype | M12 – M22 | Dec 2027 – Oct 2028 | 10 months | A tethered-then-free-flying unit in the target phone envelope |
+| **P3** | Autonomy and AI maturation | M16 – M28 | Apr 2028 – Apr 2029 | 12 months | Reliable obstacle avoidance, return-to-hand, and voice mission commands |
+| **P4** | Safety, certification, and compliance | M20 – M34 | Aug 2028 – Oct 2029 | 14 months | Radio and aviation submissions accepted in the first target market |
+| **P5** | Design for manufacture and pilot production | M30 – M40 | Jun 2029 – Apr 2030 | 10 months | Pilot line yielding units that pass full validation |
+| **P6** | Limited launch and field learning | M40 – M46 | Apr 2030 – Oct 2030 | 6 months | Field reliability and incident data supporting wider release |
+
+Phases deliberately overlap. Total elapsed time to a limited launch is roughly **46 months (just under four years)**, with the critical path running through structural fatigue validation, flight-safety certification, and manufacturing ramp rather than through software.
+
+### 9.2 Work Package Breakdown
+
+| WP | Work package | Phase | Relative window | Key deliverables | Primary dependencies |
+|---|---|---|---|---|---|
+| **WP1** | Requirements, budgets, and architecture | P0 | M0 – M5 | Mass/thrust/power/thermal budgets; mode-switch architecture; safety concept | — |
+| **WP2** | Transforming chassis and joint mechanics | P1 | M4 – M14 | Folding arm mechanism, locking latches, deployment sensors, fatigue rig results | WP1 |
+| **WP3** | Propulsion and power system | P1 | M5 – M15 | Micro brushless motors, folding propellers, ESCs, dual-cell pack and PMIC strategy | WP1 |
+| **WP4** | Flight control hardware and firmware | P1–P2 | M6 – M20 | Flight controller board, IMU/baro integration, PX4-derived firmware, failsafes | WP1, WP3 |
+| **WP5** | Mobile compute and unified OS layer | P1–P2 | M6 – M20 | SoC/NPU selection, mode-switch OS layer, resource arbitration, thermal governor | WP1 |
+| **WP6** | Sensing, VIO/SLAM, and obstacle avoidance | P2–P3 | M12 – M26 | Camera/ToF stack, visual-inertial odometry, avoidance behaviors | WP4, WP5 |
+| **WP7** | RL control policies and sim-to-real | P2–P3 | M10 – M28 | Simulator, PPO base policy, SAC/TD3 (+HER) refinement, transfer validation | WP3, WP4 |
+| **WP8** | On-device LLM and mission planning | P3 | M16 – M28 | Hybrid on-device/cloud routing, natural-language flight commands, offline fallback | WP5 |
+| **WP9** | Safety engineering and failure analysis | P2–P4 | M14 – M34 | FMEA, rotor-guard design, battery abuse testing, geofencing and interlocks | WP2, WP3, WP4 |
+| **WP10** | Regulatory and certification program | P4 | M20 – M34 | FCC/CE submissions, remote ID, aviation authority engagement, market strategy | WP9 |
+| **WP11** | Industrial design, UX, and privacy controls | P2–P4 | M14 – M32 | Enclosure design, mode-indicator design, privacy defaults, user safety prompts | WP2, WP5 |
+| **WP12** | Design for manufacture and supply chain | P5 | M28 – M40 | Tooling, supplier qualification, assembly process, cost-down iterations | WP2, WP3, WP11 |
+| **WP13** | Validation, reliability, and field trials | P5–P6 | M32 – M46 | Environmental and drop testing, cycle-life validation, beta program, incident review | WP9, WP12 |
+
+### 9.3 Milestones
+
+| Milestone | Relative date | Illustrative date | Description |
+|---|---|---|---|
+| **M-A** | M6 | Jun 2027 | Feasibility gate — budgets close or the concept is rescoped |
+| **M-B** | M14 | Feb 2028 | Bench-level flight of a non-phone airframe using target motors and props |
+| **M-C** | M22 | Oct 2028 | First free flight of a device in the phone envelope that also functions as a phone |
+| **M-D** | M28 | Apr 2029 | Autonomy milestone — obstacle avoidance and return-to-hand demonstrated repeatably |
+| **M-E** | M34 | Oct 2029 | Certification submissions accepted in the first target market |
+| **M-F** | M40 | Apr 2030 | Pilot production units pass full validation |
+| **M-G** | M46 | Oct 2030 | Limited market launch with field monitoring in place |
+
+### 9.4 Schedule Risks
+
+- **Fatigue validation is long-lead**: cycle-life testing of the transformation joints cannot be compressed much below real elapsed time, so WP2 should start as early as budgets allow.
+- **Certification is the widest uncertainty band**: WP10 could extend by 6–12 months depending on how aviation authorities classify a dual-use phone/aircraft, and this risk is largely outside the engineering team's control.
+- **Sim-to-real tuning tends to overrun**: WP7 assumes the simulator is refined against real chassis data from M12; if physical prototypes slip, the autonomy phases slip with them.
+- **Thermal findings can force redesign**: a thermal failure discovered at M22 could push work back into WP2/WP3, which is why WP9 is scheduled to overlap integration rather than follow it.
+
+---
+
 ## Open Questions
 
 **Carried over from v0.1:**
@@ -268,6 +359,11 @@ Company capabilities and regulatory conditions change. The references above supp
 - What technical or policy mechanisms (e.g., visible flight-mode indicators, mandatory remote ID broadcast) could reduce the "disguised as an everyday object" ambiguity raised in the societal risks section?
 - How should the societal benefits (democratized access, accessibility gains, education) be weighed against surveillance-normalization risk when deciding default privacy settings and geofencing defaults out of the box?
 
+**New in v1.0:**
+- Which of the two proposed mitigations for each Section 4 risk should be carried into the baseline design, and which should be held as fallbacks?
+- Is the ~46-month schedule in Section 9 realistic for the intended team size and funding, or does it assume resources that do not yet exist?
+- Should certification (WP10) be pulled earlier and treated as a gating activity rather than a parallel one, given it carries the widest schedule uncertainty?
+
 ---
 
-*End of Version 0.31 draft.*
+*End of Version 1.0.*
