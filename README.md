@@ -1,12 +1,14 @@
 # Project VERION: Smartphone–Intelligent Drone Hybrid
 
-> **Version 1.1** — Adds a reader-oriented glossary and revises the Open Questions labels so all question groups are explicitly marked as carried over. Adds a table of contents, two candidate solutions for every risk in Section 4, and a new Section 9 covering the project breakdown, work packages, milestones, and estimated timetable. Version 0.31 reordered the five-company capability shortlist ahead of the Open Questions; version 0.3 added that shortlist alongside the societal benefits and impact analysis. This document remains a living specification and will be revised as the design matures.
+> **Version 2.0** — Adds a new Section 10, a project-centered knowledge base collecting ideas, concepts, technologies, theories, and philosophies from across disciplines that could help complete a high-quality smartphone/intelligent-drone hybrid. Adds a framing note (below the Executive Summary) clarifying that this document is centered on the project itself rather than on any one team or approach. Version 1.1 added a reader-oriented glossary, marked every Open Questions group as carried over, added a table of contents, added two candidate solutions for every risk in Section 4, and added Section 9 covering the project breakdown, work packages, milestones, and estimated timetable. Version 0.31 reordered the five-company capability shortlist ahead of the Open Questions; version 0.3 added that shortlist alongside the societal benefits and impact analysis. This document remains a living specification and will be revised as the design matures.
 
 ---
 
 ## Executive Summary
 
 This document outlines the concept, technical requirements, and open risks for a hybrid device: a fully functional smartphone that can detach, unfold, or reconfigure itself into a small autonomous quadrotor drone. The device would serve as a personal communication tool and an on-demand aerial sensing/camera platform, controlled either directly by the user or semi-autonomously via onboard AI.
+
+**A note on how to read this document — it is project-centered, not team-centered.** The subject of this specification is the successful development of a high-quality smartphone/intelligent-drone hybrid device. It is not a description of any single company's roadmap, any one engineer's preferred toolkit, or any one methodology. Because the project itself is the fixed point, this document is meant to gather and organize everything that could plausibly help bring such a device into existence — technical, theoretical, philosophical, or organizational — regardless of who eventually does the work or which specific tools, companies, materials, or methods they choose. Section 10 exists for this reason: it is a living knowledge base of ideas that may be useful to *any* team attempting this project, not a recommendation that VERION must use every item in it.
 
 ---
 
@@ -22,6 +24,7 @@ This document outlines the concept, technical requirements, and open risks for a
 - [7. Propeller and Propulsion Material Comparison](#7-propeller-and-propulsion-material-comparison)
 - [8. Five Companies with Relevant Capabilities to Build Project VERION](#8-five-companies-with-relevant-capabilities-to-build-project-verion)
 - [9. Project Breakdown and Estimated Timetable](#9-project-breakdown-and-estimated-timetable)
+- [10. Knowledge Base: Concepts, Technologies, Theories, and Philosophies](#10-knowledge-base-concepts-technologies-theories-and-philosophies)
 - [Glossary](#glossary)
 - [Open Questions](#open-questions)
 
@@ -346,6 +349,93 @@ Phases deliberately overlap. Total elapsed time to a limited launch is roughly *
 
 ---
 
+## 10. Knowledge Base: Concepts, Technologies, Theories, and Philosophies
+
+This section is deliberately broader than the rest of the document. Where Sections 1–9 describe *this* design as currently conceived, Section 10 is a project-centered reference collection: ideas drawn from engineering, science, design, and organizational theory that could plausibly help *any* team complete a high-quality smartphone/intelligent-drone hybrid, whether or not they follow VERION's specific choices. Entries are grouped by domain, and each is a launching point for further research rather than a finished recommendation. This section is expected to grow the most across future versions.
+
+### 10.1 Mechanical Design and Materials Science
+
+- **Compliant mechanisms** — Mechanisms that achieve motion through the deliberate flexing of elastic elements rather than through rigid joints and bearings. Relevant to a fold/unfold chassis that must survive thousands of cycles with fewer wear-prone hinge points.
+- **Origami-inspired and kirigami-inspired engineering** — Folding and cut-pattern techniques from computational origami research (e.g., rigid-origami tessellations) applied to deployable structures; a mature academic field with direct application to a telescoping or folding drone frame.
+- **Metamaterials and auxetic structures** — Engineered materials or lattices whose mechanical properties (stiffness, expansion under load) come from geometry rather than base material, potentially useful for lightweight, impact-tolerant airframe panels.
+- **Shape-memory alloys and polymers (e.g., Nitinol)** — Materials that return to a pre-set shape when heated, offering an alternative to motor-driven deployment for arms or latches.
+- **Tribology and wear-life engineering** — The study of friction, lubrication, and wear between surfaces in relative motion; directly informs the fatigue-life claims made about folding joints in Section 4.
+- **Topology optimization** — Computational design methods (used heavily in modern aerospace and automotive parts) that remove material from a structure until only the load paths that matter remain, useful for minimizing chassis mass without sacrificing rigidity.
+- **Additive manufacturing for end-use parts** — Metal and high-performance-polymer 3D printing (e.g., selective laser melting) increasingly used for flight-qualified, low-volume aerospace components, relevant to prototyping and possibly low-volume production of complex joint geometries.
+
+### 10.2 Propulsion, Aerodynamics, and Flight Physics
+
+- **Momentum theory and disc loading** — The classical aerodynamic framework relating propeller disc area, thrust, and induced power; explains why VERION's small diagonal (Section 2) imposes a hard efficiency ceiling regardless of motor quality.
+- **Ground effect and confined-space aerodynamics** — Airflow behavior when a rotor operates near surfaces (walls, ceilings, a user's hand); relevant to return-to-hand behaviors and indoor operation.
+- **Coaxial and ducted-fan rotor configurations** — Alternatives to open quad-rotor layouts that trade some efficiency for a smaller footprint or added prop-guard safety, worth comparing against the exposed-propeller design implied in Section 2.
+- **Biomimetic flight research** — Insect- and bird-inspired flapping-wing and folding-wing mechanisms studied in micro-air-vehicle (MAV) research programs, a possible long-horizon alternative to conventional rotors for a pocketable airframe.
+- **Computational fluid dynamics (CFD) and reduced-order aerodynamic models** — Simulation approaches for predicting airflow and thrust before physical wind-tunnel testing, useful for iterating on the small-airframe tradeoffs in Section 4 more cheaply.
+
+### 10.3 Power, Energy Storage, and Thermal Systems
+
+- **Silicon-anode and solid-state battery chemistry** — Emerging cell chemistries offering higher energy or power density than conventional lithium-ion, directly relevant to the dual-use battery tension described in Section 4.
+- **Supercapacitor hybridization** — Pairing a battery with a supercapacitor to absorb short high-current bursts (like motor spin-up), potentially reducing stress on the primary cell during transitions into flight mode.
+- **Vapor chamber and two-phase cooling** — Passive heat-spreading technologies already used in slim flagship phones, extendable to the combined SoC/motor-driver thermal load discussed in Section 4.
+- **Wireless and resonant power transfer** — Charging approaches that could let a docked or landed unit recharge without an exposed port, relevant to a device that must survive repeated transformation cycles.
+
+### 10.4 Sensing, Perception, and Autonomy
+
+- **Sensor fusion (Kalman filtering, factor graphs)** — Mathematical frameworks for combining noisy measurements (IMU, VIO, barometer, GPS) into a single reliable state estimate; foundational to any flight controller design.
+- **Event cameras** — Vision sensors that report per-pixel brightness changes rather than full frames, offering very high temporal resolution and low power draw, a candidate complement to conventional cameras for fast obstacle avoidance.
+- **Neuromorphic computing** — Chip architectures inspired by biological neural processing, explored as an ultra-low-power option for always-on perception tasks that could run without waking the main SoC.
+- **Active vs. passive sensing tradeoffs** — The general engineering tradeoff between sensors that emit energy to probe the environment (ToF, radar, lidar) and those that only observe ambient signals (cameras, microphones), relevant to choosing an obstacle-avoidance sensor suite under tight size and power budgets.
+
+### 10.5 AI, Control Theory, and Autonomy Philosophy
+
+- **Hierarchical and hybrid control architectures** — The general robotics principle (referenced implicitly in Section 3) of separating a fast, deterministic low-level controller from a slower, more flexible high-level planner; a large body of robotics literature exists on how to design the interface between the two layers safely.
+- **Model predictive control (MPC)** — An optimization-based control approach, distinct from the RL algorithms discussed in Section 3, that some production drones use for trajectory tracking; worth evaluating alongside PPO/SAC/TD3 as a more classically verifiable alternative or complement.
+- **Sim-to-real gap research** — The broader academic literature on why policies trained in simulation fail on real hardware, and mitigation techniques (domain randomization, system identification, residual learning) beyond what Section 3 already covers.
+- **Formal verification and runtime assurance for learned controllers** — Techniques for placing verifiable safety bounds or "runtime monitors" around a neural-network-based flight controller, relevant to certification (Section 4, Section 6) since regulators are generally uncomfortable certifying opaque learned policies without such guarantees.
+- **Explainable AI (XAI)** — Methods for making an AI system's decisions interpretable to a human operator or investigator after an incident; relevant both to user trust and to accident investigation for an autonomous flying device.
+- **Embodied cognition and morphological computation** — A design philosophy holding that some "intelligence" should be offloaded into the physical structure of a robot (e.g., passively stable geometry) rather than computed entirely in software; a useful lens for reducing how much the control stack has to compensate for a difficult airframe.
+
+### 10.6 Software and Systems Architecture
+
+- **Systems engineering V-model / INCOSE practices** — A structured methodology for moving from requirements through design, integration, and verification, useful for managing a project that spans mechanical, electrical, aerospace, and software disciplines at once, as VERION does.
+- **Microkernel and partitioned OS architectures (e.g., ARINC 653-style partitioning)** — Operating-system designs used in avionics to guarantee that a failure or slowdown in one software partition cannot affect a safety-critical partition; directly relevant to the "unified OS layer" concept in Section 1.4.
+- **Formal methods in safety-critical software** — Mathematical techniques (model checking, contract-based design) used in aerospace software certification (e.g., DO-178C-influenced practices) that could inform how VERION's flight-critical code is verified.
+- **Digital twins** — Maintaining a continuously updated virtual model of the physical device for simulation, predictive maintenance, and pre-flight self-checks, extending the RL simulation work in Section 3 into ongoing operations.
+- **Chaos engineering** — A software-reliability practice of deliberately injecting failures into a system to test its resilience, adaptable to hardware-in-the-loop testing of VERION's failsafes and interlocks.
+
+### 10.7 Human Factors, Design Philosophy, and Ethics
+
+- **Universal design / inclusive design** — A design philosophy aimed at making products usable by the widest possible range of people (including users with disabilities), relevant to the accessibility benefits raised in Section 5.
+- **Affordance theory** — The design principle that a product's physical form should visually and tactilely suggest how it is used; relevant to signaling clearly to a user (and bystanders) when the device is in "phone" vs. "drone" mode.
+- **Privacy by design** — An engineering and policy philosophy of building privacy protections into a system's architecture from the start rather than adding them later, directly relevant to the surveillance-normalization risk raised in Section 6.
+- **Value-sensitive design** — A design methodology that explicitly identifies the human values (safety, privacy, autonomy, equity) at stake in a technology and traces them into concrete design requirements, a useful framework for resolving the societal benefit/risk tension raised across Sections 5–6.
+- **Precautionary principle vs. permissionless innovation** — Two competing philosophies of technology regulation: one favoring restriction until safety is proven, the other favoring rapid deployment with correction as issues arise; both are live positions in the drone-regulation debate referenced in Section 6 and worth understanding as a pair.
+
+### 10.8 Regulatory, Legal, and Standards Frameworks
+
+- **Existing aviation safety case methodology** — The general practice (used across manned and unmanned aviation) of building a structured argument, backed by evidence, that a system is acceptably safe for its intended operation; a useful template for approaching the certification risk in Section 4 and Section 9's WP10.
+- **Type certification vs. declaration-based compliance** — Two different regulatory models (one requiring pre-market authority sign-off, the other allowing a manufacturer to self-declare compliance to a standard) that differ by jurisdiction and could materially change the certification timeline in Section 9.
+- **Remote ID and UTM (UAS Traffic Management) research** — The broader body of work on how autonomous aircraft identify themselves and coordinate airspace use at scale, relevant background for the geofencing and remote-ID items already listed in Sections 1 and 4.
+- **Product liability and insurance frameworks for autonomous systems** — Existing legal scholarship and case law on liability allocation between manufacturer, software provider, and operator for autonomous vehicles and drones, directly relevant to the open question on search-and-rescue liability in the Open Questions section.
+
+### 10.9 Adjacent Industries and Analogous Precedents
+
+- **Foldable-phone hinge engineering** — The mechanical and software lessons already learned by the foldable-smartphone industry (crease management, hinge durability testing, software adaptation to form-factor change) transfer directly to VERION's transforming chassis.
+- **Modular and self-reconfiguring robotics research** — An academic robotics subfield studying robots built from interchangeable modules that can rearrange themselves for different tasks; conceptually adjacent to a device that reconfigures between two very different functional modes.
+- **Transformable consumer toys and mechanisms** (e.g., commercial folding/transforming toy mechanisms) — A mature, high-cycle-count consumer engineering discipline for compact, reliable, low-cost transformation mechanisms, worth studying purely for manufacturing and durability lessons, independent of its non-technical origin.
+- **Consumer camera-drone industry practices** — Established practices around obstacle avoidance, return-to-home, and geofencing from the existing consumer drone market, much of which Section 1 and Section 4 already assume as a starting point.
+- **Wearable and hearable device miniaturization** — Packaging, thermal, and antenna-design lessons from other extremely space-constrained consumer electronics categories, relevant to fitting a flight-control stack into a phone-sized enclosure.
+
+### 10.10 Innovation and Project-Management Theory
+
+- **TRIZ (Theory of Inventive Problem Solving)** — A structured engineering-innovation methodology for resolving apparent contradictions in a design (e.g., "the device must be light for flight but heavy-battery for phone use") by searching for known contradiction-resolution patterns rather than brute-force compromise; directly applicable to several of the tensions raised in Section 4.
+- **Set-based concurrent engineering** — A project-management approach (used in some automotive and aerospace programs) of carrying multiple design alternatives forward in parallel and narrowing them based on test data, rather than committing early to one chassis or battery architecture; a possible alternative to the linear phase structure in Section 9.
+- **Failure Mode and Effects Analysis extensions (FMECA, STPA)** — Beyond the FMEA already named in the Glossary, System-Theoretic Process Analysis (STPA) is a newer hazard-analysis method built for software-intensive, autonomous systems and may surface interaction hazards that component-level FMEA misses.
+- **Lean startup and spiral development** — Iterative, hypothesis-driven development philosophies emphasizing cheap, fast validation of the riskiest assumptions first; relevant to sequencing Section 9's work packages around the highest-uncertainty items (fatigue life, certification) rather than strictly chronologically.
+
+**How to use this section going forward**: as research, prototypes, or outside developments surface new candidate ideas, they should be added here with a one- or two-sentence note on *why* they are relevant to VERION specifically — not just that they exist. Entries that graduate from "worth knowing about" to "adopted in the design" should be moved out of Section 10 and into the relevant technical section (1–9), with a changelog note, so this knowledge base stays focused on options rather than duplicating settled decisions.
+
+---
+
 ## Glossary
 
 The following terms are the ones in this specification most likely to be unfamiliar to non-engineers or readers without a robotics, aerospace, electronics, or AI background.
@@ -420,4 +510,4 @@ The following terms are the ones in this specification most likely to be unfamil
 
 ---
 
-*End of Version 1.1.*
+*End of Version 2.0.*
