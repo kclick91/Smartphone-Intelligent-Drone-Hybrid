@@ -1,6 +1,6 @@
 # Project VERION: Smartphone–Intelligent Drone Hybrid
 
-> **Version 1.0** — First consolidated release. Adds a table of contents, two candidate solutions for every risk in Section 4, and a new Section 9 covering the project breakdown, work packages, milestones, and estimated timetable. Version 0.31 reordered the five-company capability shortlist ahead of the Open Questions; version 0.3 added that shortlist alongside the societal benefits and impact analysis. This document remains a living specification and will be revised as the design matures.
+> **Version 1.1** — Adds a reader-oriented glossary and revises the Open Questions labels so all question groups are explicitly marked as carried over. Adds a table of contents, two candidate solutions for every risk in Section 4, and a new Section 9 covering the project breakdown, work packages, milestones, and estimated timetable. Version 0.31 reordered the five-company capability shortlist ahead of the Open Questions; version 0.3 added that shortlist alongside the societal benefits and impact analysis. This document remains a living specification and will be revised as the design matures.
 
 ---
 
@@ -22,6 +22,7 @@ This document outlines the concept, technical requirements, and open risks for a
 - [7. Propeller and Propulsion Material Comparison](#7-propeller-and-propulsion-material-comparison)
 - [8. Five Companies with Relevant Capabilities to Build Project VERION](#8-five-companies-with-relevant-capabilities-to-build-project-verion)
 - [9. Project Breakdown and Estimated Timetable](#9-project-breakdown-and-estimated-timetable)
+- [Glossary](#glossary)
 - [Open Questions](#open-questions)
 
 ---
@@ -345,6 +346,59 @@ Phases deliberately overlap. Total elapsed time to a limited launch is roughly *
 
 ---
 
+## Glossary
+
+The following terms are the ones in this specification most likely to be unfamiliar to non-engineers or readers without a robotics, aerospace, electronics, or AI background.
+
+- **Actuator** — A component that converts energy into physical movement. In VERION, motors are the primary actuators that turn electrical power into rotor motion.
+- **Airframe** — The physical structural body of an aircraft or drone, excluding systems such as software and payloads.
+- **Arbitration layer** — Software that decides which subsystem gets access to shared computing, power, memory, or other resources when several systems compete for them.
+- **Attitude** — The orientation of an aircraft in three-dimensional space: its pitch, roll, and yaw.
+- **Barometer** — A sensor that measures air pressure. A drone can use changes in air pressure to estimate altitude.
+- **Brushless motor** — An efficient electric motor with electronic rather than mechanical commutation. Small brushless motors are common in modern drones.
+- **Cascaded PID controller** — A flight-control arrangement in which multiple feedback controllers operate at different levels, such as an inner loop controlling attitude and an outer loop controlling position.
+- **Center of gravity (CG)** — The point at which an object's mass can be considered concentrated for purposes of balance and motion.
+- **Domain randomization** — A simulation technique that deliberately varies conditions such as mass, motor response, lighting, or wind so an AI controller becomes less dependent on one exact simulated environment.
+- **ESC (Electronic Speed Controller)** — Electronics that regulate the speed and power delivered to an electric motor. A multirotor normally uses one ESC per motor or an integrated equivalent.
+- **FMEA (Failure Modes and Effects Analysis)** — A structured safety method for identifying how components can fail, what the consequences would be, and how those failures can be mitigated.
+- **Flight envelope** — The range of operating conditions in which an aircraft is designed and validated to fly safely, including limits involving wind, speed, temperature, payload, and other factors.
+- **Flight controller** — The dedicated computing system that reads flight sensors and commands the motors to keep a drone stable and responsive.
+- **Geofencing** — Software-defined geographic boundaries that restrict where a device or aircraft may operate.
+- **GPS-denied** — An environment in which GPS/GNSS signals are unavailable, unreliable, or intentionally unusable, such as some indoor environments.
+- **Hall-effect sensor** — A sensor that detects magnetic fields. In VERION, it could help determine whether a folding joint or mechanism has reached the required position.
+- **HER (Hindsight Experience Replay)** — A reinforcement-learning technique that lets an agent learn from failed attempts by treating an outcome it actually reached as if it had been the intended goal.
+- **IMU (Inertial Measurement Unit)** — A sensor package that typically combines accelerometers and gyroscopes, and sometimes a magnetometer, to estimate motion and orientation.
+- **Inference** — The process of running a trained AI model to produce an output. For example, VERION could perform AI inference to recognize an obstacle or interpret a flight command.
+- **LLM (Large Language Model)** — An AI model trained to process and generate language. In VERION, an LLM would be suited to interpreting commands and planning missions rather than directly stabilizing the aircraft.
+- **Magnetometer** — A sensor that measures magnetic fields and can provide a heading reference by sensing Earth's magnetic field.
+- **Millimeter-wave radar** — Radar operating at very high radio frequencies, useful for detecting objects, distance, and motion in some conditions where cameras may struggle.
+- **NPU (Neural Processing Unit)** — Specialized hardware designed to accelerate AI and machine-learning calculations efficiently, especially on mobile devices.
+- **On-policy / off-policy reinforcement learning** — Two broad families of reinforcement-learning methods. On-policy methods learn from data generated by the current policy; off-policy methods can learn from previously collected experience as well.
+- **Optical flow** — The apparent motion of visual features across a camera image. A downward-facing optical-flow sensor can help a drone estimate horizontal movement relative to the ground.
+- **PID controller** — A feedback-control algorithm that continually compares a desired state with the measured state and adjusts the system to reduce the error. PID stands for proportional-integral-derivative.
+- **PMIC (Power Management Integrated Circuit)** — A chip or collection of circuitry that controls how electrical power is distributed, regulated, and monitored within a device.
+- **PPO (Proximal Policy Optimization)** — A reinforcement-learning algorithm designed to update a policy while limiting overly large changes during training. It is commonly used for continuous-control research.
+- **Propeller disc area** — The circular area swept by a propeller as it rotates. Larger effective disc area can generally improve the ability to generate lift efficiently, subject to the rest of the aircraft design.
+- **Quantized model** — An AI model whose numerical representations have been reduced in precision, often making it smaller and faster and reducing memory/power requirements at some cost in accuracy.
+- **Reinforcement learning (RL)** — A machine-learning approach in which an agent learns behavior by interacting with an environment and receiving rewards or penalties for outcomes.
+- **Remote ID** — A system for remotely identifying or broadcasting information about an aircraft during flight where required by applicable aviation rules.
+- **Return-to-home / return-to-hand** — An autonomous behavior in which a drone navigates toward a designated recovery location, such as its launch point or a user's hand.
+- **RTOS (Real-Time Operating System)** — An operating system designed to provide predictable timing for tasks where meeting deadlines matters, such as flight-control operations.
+- **SAC (Soft Actor-Critic)** — An off-policy reinforcement-learning algorithm that emphasizes both task performance and exploration, making it useful for many continuous-control problems.
+- **Sim-to-real transfer** — The process of taking a controller or AI policy trained in simulation and adapting or validating it for operation on physical hardware.
+- **SLAM (Simultaneous Localization and Mapping)** — A robotics technique in which a system builds a map of an environment while simultaneously estimating its own position within that map.
+- **SoC (System-on-Chip)** — A chip that integrates multiple computing functions, often including CPU cores, graphics, AI acceleration, memory interfaces, and connectivity-related components.
+- **Sparse reward** — A reinforcement-learning setup in which useful feedback is provided only occasionally, such as giving a reward mainly when a robot reaches a goal.
+- **Stereo camera** — A pair of cameras whose slightly different viewpoints allow a system to estimate depth in a manner analogous to human binocular vision.
+- **Telemetry** — Data sent from a vehicle or device to another system for monitoring and control, such as position, battery level, or sensor information.
+- **Thermal throttling** — Reducing computing performance when a component becomes too hot in order to protect the hardware and stay within safe operating limits.
+- **Time-of-flight (ToF) sensor** — A sensor that estimates distance by measuring how long emitted light takes to travel to an object and return.
+- **ToF** — Abbreviation for **time-of-flight**.
+- **TD3 (Twin Delayed Deep Deterministic Policy Gradient)** — An off-policy reinforcement-learning algorithm for continuous actions that uses multiple techniques to reduce value-estimation errors.
+- **Unified OS layer** — The software layer proposed in VERION to coordinate phone functions and flight functions while managing shared hardware resources and safety constraints.
+- **VIO (Visual-Inertial Odometry)** — A method for estimating a device's motion by combining camera observations with inertial sensor measurements.
+- **Wind tunnel** — A facility that produces controlled airflow around a physical object so engineers can measure aerodynamic behavior.
+
 ## Open Questions
 
 **Carried over from v0.1:**
@@ -353,17 +407,17 @@ Phases deliberately overlap. Total elapsed time to a limited launch is roughly *
 - User-safety design for exposed propellers when handled in transition between modes.
 - Battery chemistry and thermal strategy under combined flight + cellular load.
 
-**New in v0.2:**
+**Carried over from v0.2:**
 - What insurance and liability model would apply to casual/bystander-operated search-and-rescue use, given the device is not owned or trained as dedicated rescue equipment?
 - How should municipal/urban airspace policy be updated in advance of mass adoption, rather than reactively after incidents occur?
 - What technical or policy mechanisms (e.g., visible flight-mode indicators, mandatory remote ID broadcast) could reduce the "disguised as an everyday object" ambiguity raised in the societal risks section?
 - How should the societal benefits (democratized access, accessibility gains, education) be weighed against surveillance-normalization risk when deciding default privacy settings and geofencing defaults out of the box?
 
-**New in v1.0:**
+**Carried over from v1.0:**
 - Which of the two proposed mitigations for each Section 4 risk should be carried into the baseline design, and which should be held as fallbacks?
 - Is the ~46-month schedule in Section 9 realistic for the intended team size and funding, or does it assume resources that do not yet exist?
 - Should certification (WP10) be pulled earlier and treated as a gating activity rather than a parallel one, given it carries the widest schedule uncertainty?
 
 ---
 
-*End of Version 1.0.*
+*End of Version 1.1.*
